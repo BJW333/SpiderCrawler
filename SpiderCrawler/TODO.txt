@@ -1,0 +1,6 @@
+
+TO DO
+
+After each set of things printed aka ipinfo or ipanaylize in results_text it doesnt clear 
+
+Start working on integration with payloads
