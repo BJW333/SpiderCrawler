@@ -5,4 +5,6 @@ Also use a VPN
 
 the main working file is SpiderCrawlerMain.py run that to run the program
 
+camfindinfo is something id eventually like to intergrate into program
+
 this is created for educational purposes in realtion for pentesting and other intrests
