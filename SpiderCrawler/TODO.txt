@@ -1,0 +1,18 @@
+
+TO DO
+
+
+Part of program that's almost done but still a little work needs to be done
+
+Ip analysis of CVE to exploit part is almost done being prettied up
+
+Maybe make button on the program that displays CVE details
+
+
+Parts of program that need work
+
+File ip scan to find CVE and match exploit
+
+Pie chart of open ports 
+
+Add Spider Logo to background of program so looks cooler
