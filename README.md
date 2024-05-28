@@ -7,7 +7,10 @@ the main working file is SpiderCrawlerMain.py run that to run the program
 
 camfindinfo is something id eventually like to intergrate into program
 
-this is created for educational purposes in realtion for pentesting and other intrests
+still some errors with how references are printing out in the gui
 
+
+
+this is created for educational purposes in realtion for pentesting and other intrests
 
 This is a work in progress and isnt done
