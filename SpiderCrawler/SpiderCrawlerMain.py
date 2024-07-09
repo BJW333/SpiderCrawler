@@ -20,7 +20,6 @@ from tkinter import PhotoImage
 from PIL import Image, ImageTk
 import re
 
-# Replace 'YOUR_SHODAN_API_KEY' with your actual Shodan API key
 SHODAN_API_KEY = 'jxLW13mSmgc5PYI3kK1YqUXWvzGZXpbO'
 shodan_api = Shodan(SHODAN_API_KEY)
 
@@ -35,28 +34,24 @@ global graph_canvas
 global graph_figure
 graph_canvas = None
 graph_figure = None
-# Command to open a new Terminal window and run the commands below
+
 def display_open_ports_pie_chart(cveportsgraphdata, results_frame):
     global graph_figure
     global graph_canvas
     
-    # Prepare data for the pie chart
     labels = cveportsgraphdata
-    sizes = [1 for _ in cveportsgraphdata]  # Equal sizes for each port, adjust as needed
+    sizes = [1 for _ in cveportsgraphdata]  
     
-    # Create a new figure if it does not exist
     if graph_figure is None:
         graph_figure, ax = plt.subplots()
     else:
-        # Clear the existing graph content if the figure already exists
         ax = graph_figure.gca()
         ax.clear()
 
-    # Plot the pie chart
     ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    ax.axis('equal')  
     
-    # Handle the canvas
+   
     if graph_canvas is None:
         graph_canvas = FigureCanvasTkAgg(graph_figure, master=results_frame)
         graph_canvas.draw()
@@ -69,18 +64,15 @@ def show_open_ports_pie_chart():
     global graph_canvas
     global graph_figure
     
-    if not cveportsgraphdata:  # Check if the list is empty
-        print("No CVE-related open ports data available. Please perform a scan first.")
+    if not cveportsgraphdata:  
+        print("No CVE open ports data available. Please perform a scan first.")
         return
     
-    # Check if the graph is already displayed
     if graph_canvas is not None:
-        # Destroy the graph canvas and figure to close the graph
         graph_canvas.get_tk_widget().destroy()
         graph_canvas = None
         graph_figure = None
     else:
-        # Display the graph if it's not currently shown
         display_open_ports_pie_chart(cveportsgraphdata, resultsframe)
 
 
@@ -104,8 +96,8 @@ runmetasploit()
 MSF_RPC_HOST = "127.0.0.1"
 MSF_RPC_PORT = "55553"
 MSF_RPC_URL = f"http://{MSF_RPC_HOST}:{MSF_RPC_PORT}/api/"
-MSF_RPC_USER = "msf"  # Default user
-MSF_RPC_PASSWORD = "password"  # The password you set when starting the RPC server
+MSF_RPC_USER = "msf" 
+MSF_RPC_PASSWORD = "password"  
 
 def authenticate_rpc():
     try:
@@ -144,7 +136,7 @@ def execute_rpc_command(token, method, params=[]):
 def scan_ip_for_open_ports(ip, options, timing='T4'):
     cmd = ['nmap', ip]
 
-    #options based on the BooleanVars/checkboxes
+    #options based on the checkboxes
     if options['fast_scan'].get():
         cmd.append('-F')
     if options['show_open'].get():
@@ -179,28 +171,12 @@ def scan_ip_for_open_ports(ip, options, timing='T4'):
         print(f"Error scanning {ip} for open ports: {e}")
         return []
     
-#old method of getting nmap outputs
-""" def parse_nmap_vuln_output(nmap_output):
-    open_ports = []
-    nmap_vulnerabilities = {}
-    for line in nmap_output.split('\n'):
-        if '/tcp' in line and 'open' in line:
-            port = line.split('/')[0].strip()
-            open_ports.append(port)
-        if 'CVE' in line:
-            parts = line.split('|')
-            for part in parts:
-                if 'CVE-' in part:
-                    cve = part.strip().split()[0]
-                    if port not in nmap_vulnerabilities:
-                        nmap_vulnerabilities[port] = []
-                    nmap_vulnerabilities[port].append(cve)
-    return open_ports, nmap_vulnerabilities """
+
 
 def parse_nmap_vuln_output(nmap_output):
     open_ports = []
     nmap_vulnerabilities = {}
-    cve_pattern = re.compile(r"CVE-\d{4}-\d{4,7}")  #Pattern to match typical CVE IDs
+    cve_pattern = re.compile(r"CVE-\d{4}-\d{4,7}")  #pattern to match CVE
     for line in nmap_output.split('\n'):
         if '/tcp' in line and 'open' in line:
             port = line.split('/')[0].strip()
@@ -243,10 +219,10 @@ def search_exploitdb(all_cve_ids):
             #execute the searchsploit command with the CVE number
             result = subprocess.run(["searchsploit", "--json", cve_id], capture_output=True, text=True)
             if result.returncode == 0:
-                #parse the output and store the URL or the entire output as needed
+                #parse the output and store the URL and entire output 
                 exploits[cve_id] = result.stdout
                 results_text.insert(tk.INSERT, f"Results for {cve_id}:")
-                results_text.insert(tk.INSERT, result.stdout)  # Print the results for this particular CVE
+                results_text.insert(tk.INSERT, result.stdout)  #print the results for this particular CVE
             else:
                 error_message = f"searchsploit did not find any results for {cve_id} or failed to run"
                 exploits[cve_id] = error_message
@@ -303,7 +279,7 @@ def analyze_file_gui():
                     all_vulnerabilities = {}
                     ports_with_cves = []
 
-                    # Merge Shodan and Nmap vulnerabilities
+                    #Shodan and Nmap vulnerabilities
                     for port in open_ports_list:
                         merged_vulns = set(shodan_vulnerabilities.get(port, [])) | set(nmap_vulnerabilities.get(port, []))
                         all_vulnerabilities[port] = list(merged_vulns)
