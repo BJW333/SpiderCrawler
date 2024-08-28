@@ -2,7 +2,7 @@
 Overview
 -----------------
 
-SpiderCrawler is a Python-based tool designed to facilitate network scanning and vulnerability assessment. This program leverages the Shodan API for gathering data on open ports and potential vulnerabilities across different IP addresses. It also includes features for data visualization using Matplotlib and a graphical user interface built with Tkinter.
+SpiderCrawler is a Python based tool designed to facilitate network scanning and vulnerability assessment. This program leverages the Shodan API for gathering data on open ports and potential vulnerabilities across different IP addresses and then presents you with exploits. It also includes features for data visualization using Matplotlib and a graphical user interface built with Tkinter.
 
 
 
