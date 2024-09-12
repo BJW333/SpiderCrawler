@@ -9,15 +9,14 @@ SpiderCrawler is a Python based tool designed to facilitate network scanning and
 
 READ ME
 
-Suggested to run the hidemyipwithtor.sh before scanning any IPs you don’t want to find you
-Also use a VPN
+Suggested to run the hidemyipwithtor.sh before scanning any IPs you don’t want to find you. Also use a VPN.
 
-the main working file is SpiderCrawlerMain.py run that to run the program
+The main working file is SpiderCrawlerMain.py run that to run the program.
 
 
-This is created for educational purposes in realtion for pentesting and other intrests
+This is created for educational purposes in realtion for pentesting and other intrests.
 
-This is a work in progress and isnt done
+This is a work in progress!
 
 
 
