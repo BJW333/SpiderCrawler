@@ -23,4 +23,4 @@ This is a work in progress!
 
 TODO
 
-still some errors with how references are printing out in the gui it repeats the same one
+Fix nmap command options some of them still dont work
